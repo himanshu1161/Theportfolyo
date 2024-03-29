@@ -3,7 +3,7 @@ import Audio from "../src/components/Audio";
 import Contact from "../src/components/Contact";
 import Cursor from "../src/components/Cursor";
 import Home from "../src/components/Home";
-import News from "../src/components/News";
+import Testimonials from "../src/components/Testimonials";
 import Portfolio from "../src/components/Portfolio";
 import Price from "../src/components/Price";
 import Skills from "../src/components/Skills";
@@ -29,7 +29,7 @@ const IndexDark = () => {
           <Skills />
           <Timeline />
           <Price />
-          <News />
+          <Testimonials />
           <Contact />
           <Footer />
           <Audio />

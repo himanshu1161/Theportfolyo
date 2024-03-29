@@ -5,7 +5,6 @@ import Audio from "../src/components/Audio";
 import Contact from "../src/components/Contact";
 import Cursor from "../src/components/Cursor";
 import Home from "../src/components/Home";
-import Testimonials from "../src/components/Testimonials";
 import Portfolio from "../src/components/Portfolio";
 import Price from "../src/components/Price";
 import Skills from "../src/components/Skills";
@@ -14,6 +13,7 @@ import Footer from "../src/layout/Footer";
 import Header from "../src/layout/Header";
 import Settings from "../src/layout/Settings";
 import PageHead from "../src/PageHead";
+import Testimonials from "../src/components/Testimonials";
 
 const Index = ({ data }) => {
   const [portfolioData, setPortfolioData] = useState(data);
@@ -26,11 +26,11 @@ const Index = ({ data }) => {
           <Settings />
           <Header />
           {portfolioData && portfolioData.user && portfolioData.user.about && <Home data={portfolioData} />}
-          {<Portfolio data={portfolioData} />}
+          {portfolioData && portfolioData.user && portfolioData.user.projects && <Portfolio data={portfolioData} />}
           {portfolioData && portfolioData.user && portfolioData.user.skills && <Skills data={portfolioData} />}
           {portfolioData && portfolioData.user && portfolioData.user.timeline && <Timeline data={portfolioData} />}
           {portfolioData && portfolioData.user && portfolioData.user.services && <Price data={portfolioData} />}
-          <Testimonials  data={portfolioData}/>
+          {portfolioData && portfolioData.user && portfolioData.user.services && <Testimonials data={portfolioData}/>}
           {portfolioData && portfolioData.user && portfolioData.user.about && <Contact data={portfolioData} />}
           <Footer />
           <Audio />
