@@ -42,6 +42,24 @@ body {
     background-color: #fff;
     color: #767676;
 }
+.head_test{
+    margin-top: 4rem;
+}
+.h_t2{
+    margin-top: 10px;
+}
+.h_t3{
+    margin-bottom: 2rem !important;
+}
+.btn_one{
+    margin-top: 2rem;
+    margin-left: 12.5rem;
+    color: white;
+    background-color: #ff4522;
+    width: 80px;
+    height: 37px;
+    border: none;
+}
 svg {
     fill: currentcolor;
     width: 15px;
@@ -2393,6 +2411,9 @@ body.dark .kura_tm_settings .cursor li .svg,
     }
 }
 @media (max-width: 768px) {
+    .btn_one{
+        margin-left: 8rem;
+    }
     .kura_tm_hero .job {
         font-size: 30px;
     }

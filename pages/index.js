@@ -5,7 +5,7 @@ import Audio from "../src/components/Audio";
 import Contact from "../src/components/Contact";
 import Cursor from "../src/components/Cursor";
 import Home from "../src/components/Home";
-import News from "../src/components/News";
+import Testimonials from "../src/components/Testimonials";
 import Portfolio from "../src/components/Portfolio";
 import Price from "../src/components/Price";
 import Skills from "../src/components/Skills";
@@ -26,11 +26,11 @@ const Index = ({ data }) => {
           <Settings />
           <Header />
           {portfolioData && portfolioData.user && portfolioData.user.about && <Home data={portfolioData} />}
-          {portfolioData && portfolioData.user && portfolioData.user.portfolio && <Portfolio data={portfolioData} />}
+          {<Portfolio data={portfolioData} />}
           {portfolioData && portfolioData.user && portfolioData.user.skills && <Skills data={portfolioData} />}
           {portfolioData && portfolioData.user && portfolioData.user.timeline && <Timeline data={portfolioData} />}
           {portfolioData && portfolioData.user && portfolioData.user.services && <Price data={portfolioData} />}
-          <News />
+          <Testimonials  data={portfolioData}/>
           {portfolioData && portfolioData.user && portfolioData.user.about && <Contact data={portfolioData} />}
           <Footer />
           <Audio />

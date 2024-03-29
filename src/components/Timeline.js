@@ -30,6 +30,10 @@ const Timeline = ({ data }) => {
 
   const sortedTimeline = data.user.timeline.sort((a, b) => a.sequence - b.sequence);
 
+  // Separate timeline items into "Education" and "Experience"
+  const educationItems = sortedTimeline.filter((item) => item.forEducation);
+  const experienceItems = sortedTimeline.filter((item) => !item.forEducation);
+
   return (
     <div className="kura_tm_section" id="timeline">
       <div className="kura_tm_timeline">
@@ -39,27 +43,30 @@ const Timeline = ({ data }) => {
             <h3>Working Period</h3>
           </div>
           <div className="timeline_list">
+            <h4>Education</h4>
             <ul>
-              {sortedTimeline.map((item) => (
+              {educationItems.map((item) => (
+                <li key={item._id}>
+                  <div className="list_inner">
+                    <span>
+                      {format(new Date(item.startDate), "MMMM yyyy")} -{" "}
+                      {format(new Date(item.endDate), "MMMM yyyy")}
+                    </span>
+                  </div>
+                  <div className="list_inner">
+                    <span>{item.jobTitle}</span>
+                  </div>
+                  <div className="list_inner">
+                    <span>{item.jobLocation}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <h4>Experience</h4>
+            <ul>
+              {experienceItems.map((item) => (
                 <React.Fragment key={item._id}>
-                  {item.forEducation ? (
-                    <li>
-                      <div className="list_inner">
-                        <span>
-                          {format(new Date(item.startDate), "MMMM yyyy")} -{" "}
-                          {format(new Date(item.endDate), "MMMM yyyy")}
-                        </span>
-                      </div>
-                      <div className="list_inner">
-                        <span>{item.jobTitle}</span>
-                      </div>
-                      <div className="list_inner">
-                        <span>{item.jobLocation}</span>
-                      </div>
-                    </li>
-                  ) : (
-                    renderTimelineItem(item)
-                  )}
+                  {renderTimelineItem(item)}
                 </React.Fragment>
               ))}
             </ul>

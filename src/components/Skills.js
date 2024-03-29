@@ -1,12 +1,9 @@
-import dynamic from "next/dynamic";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { activeSkillProgress } from "../utilits";
 
-const ParallaxVideo = dynamic(import("./Parallax"), {
-  ssr: false,
-});
-
 const Skills = ({ data }) => {
+  const [showAllSkills, setShowAllSkills] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       activeSkillProgress();
@@ -22,11 +19,12 @@ const Skills = ({ data }) => {
   if (!data || !data.user || !data.user.skills || data.user.skills.length === 0) {
     return "Not available";
   }
-
-  // Filter and sort enabled skills
   const enabledSkills = data.user.skills
     .filter(skill => skill.enabled) 
     .sort((a, b) => a.sequence - b.sequence);
+
+
+  const skillsToShow = showAllSkills ? enabledSkills : enabledSkills.slice(0, 5);
 
   return (
     <div className="kura_tm_section" id="skills">
@@ -42,7 +40,7 @@ const Skills = ({ data }) => {
                 <p>{data?.user?.about?.description}</p>
               </div>
               <div className="dodo_progress wow fadeInUp" data-wow-duration=".7s" data-wow-delay=".2s">
-                {enabledSkills.map((skill, index) => (
+                {skillsToShow.map((skill, index) => (
                   <div className="progress_inner" key={index} data-value={skill.percentage}>
                     <span>
                       <span className="label">{skill.name}</span>
@@ -56,10 +54,9 @@ const Skills = ({ data }) => {
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="right">
-              <ParallaxVideo />
-              <div className="my_image jarallax" data-speed="0" style={{ backgroundImage: "url(/img/portfolio/2.jpg)" }}></div>
+              <button onClick={() => setShowAllSkills(!showAllSkills)} className="btn_one">
+                {showAllSkills ? "View Less" : "View More"}
+              </button>
             </div>
           </div>
         </div>
